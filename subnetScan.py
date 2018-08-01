@@ -4,14 +4,15 @@
 Author: Luan Tran
 Date: 7/22/18
 Description: A simple script that pings all the local hosts on a subnet.
-    Main function prints the active IPs and hostsnames into a file or to 
-    terminal. User must provide the IP address in the subnet and the subnet 
-    mask. Currently only works for Class C IP addresses
+    Main function prints the active IPs and hostsnames into a file terminal. 
+    User must provide the IP address in the subnet and the subnet 
+    mask. Works for Class B and C IP networks.
 '''
 
 import optparse
 import errno
 import cScan
+import bScan
 
 # Description: Check for length and numeric characters
 # Input: IP and subnet string arrays
@@ -67,18 +68,29 @@ def main():
     ipCheckStrings = trgtIP.split('.')
     subnetCheckStrings = subnetMask.split('.')
     
-
+    bScan.subnetBScan(ipCheckStrings, subnetCheckStrings)
     if (validIpAndSubStruct(ipCheckStrings,subnetCheckStrings) == False):
         print parser.usage
         exit(0)
-    elif (cScan.validCSub(subnetCheckStrings) == False):
+    
+    # Scan subnet
+    ipClass = int(ipCheckStrings[0])
+    if ipClass >= 128 & ipClass <= 191:
+        if cScan.validCSub(subnetCheckStrings) == False:
+            print parser.usage
+            exit(0)
+        else:
+            cScan.subnetCScan(ipCheckStrings, subnetCheckStrings)
+    elif ipClass >= 192 & ipClass <= 223:
+        if bScan.validBSub(subnetCheckStrings) == False:
+            print parser.usage
+            exit(0)
+        else:
+            bScan.subnetBScan(ipCheckStrings, subnetCheckStrings)
+    else:
         print parser.usage
         exit(0)
-
     
-    #Scan subnet
-    cScan.subnetCScan(ipCheckStrings, subnetCheckStrings)
-
 if __name__ == "__main__":
     main()
 

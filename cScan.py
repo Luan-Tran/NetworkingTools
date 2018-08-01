@@ -3,7 +3,6 @@
 
 import socket
 
-
 # Description: Determine if subnet mask is correct for class C address
 # Input: string array of each subnet byte
 # Return: false if incorrect subnet mask for Class C address, otherwise true
