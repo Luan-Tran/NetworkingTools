@@ -3,8 +3,9 @@
 '''
 Author: Luan Tran
 Date: 7/22/18
-Description: A simple script that pings all the local hosts on a subnet.
-    Main function prints the active IPs and hostsnames into a file terminal. 
+Description: A simple script that creates a socket to all the local hosts 
+    on a subnet. Which determines what devices are on the subnet.
+    Main function prints the active IPs and hostsnames into a the terminal. 
     User must provide the IP address in the subnet and the subnet 
     mask. Works for Class B and C IP networks.
 '''
