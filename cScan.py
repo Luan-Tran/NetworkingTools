@@ -10,9 +10,9 @@ import socket
 def validCSub(subnetArr):
     
     if( subnetArr[0] != '255') | (subnetArr[1] != '255') | (subnetArr[2] != '255'):
-        print 'here'
         return False
-
+    
+    #Default mask
     if(subnetArr[3] == '0'):
         return True
     
@@ -23,7 +23,8 @@ def validCSub(subnetArr):
     
     #Check for valid addresses
     for i in range(1,7):
-        currBool = (currBool) | (lastByte == currPos)
+        if( lastByte == currPos):
+            currBool = True
         currPos = currPos + currHalf
         currHalf = currHalf/2
     
