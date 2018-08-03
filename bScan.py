@@ -7,7 +7,7 @@ import socket
 # Description: Determine if subnet mask is correct for class B address
 # Input: string array of each subnet byte
 # Return: false if incorrect subnet mask for Class B address, otherwise true
-def validCSub(subnetArr):
+def validBSub(subnetArr):
      
     if (subnetArr[0] != '255' ) | (subnetArr[1] != '255'):
         return False
@@ -75,7 +75,6 @@ def subnetBScan(trgtIP, subnetMask):
             for fourthOct in range(1,255): 
                 currIP = str(trgtIP[0]+"."+trgtIP[1]+"."+ \
                 str(thirdOct)+"."+str(fourthOct))
-                print currIP
             
                 try:
                     currSock = socket.gethostbyaddr(currIP)
@@ -97,11 +96,4 @@ def subnetBScan(trgtIP, subnetMask):
                 print line
             except:
                 pass
-
-
-
-
-
-
-
 

@@ -69,25 +69,26 @@ def main():
     ipCheckStrings = trgtIP.split('.')
     subnetCheckStrings = subnetMask.split('.')
     
-    bScan.subnetBScan(ipCheckStrings, subnetCheckStrings)
     if (validIpAndSubStruct(ipCheckStrings,subnetCheckStrings) == False):
         print parser.usage
         exit(0)
     
     # Scan subnet
     ipClass = int(ipCheckStrings[0])
-    if ipClass >= 128 & ipClass <= 191:
-        if cScan.validCSub(subnetCheckStrings) == False:
-            print parser.usage
-            exit(0)
-        else:
-            cScan.subnetCScan(ipCheckStrings, subnetCheckStrings)
-    elif ipClass >= 192 & ipClass <= 223:
+
+    #Check if B or C address and then scan
+    if (ipClass >= 128) & (ipClass <= 191):
         if bScan.validBSub(subnetCheckStrings) == False:
             print parser.usage
             exit(0)
         else:
             bScan.subnetBScan(ipCheckStrings, subnetCheckStrings)
+    elif (ipClass >= 192) & (ipClass <= 223):
+        if cScan.validCSub(subnetCheckStrings) == False:
+            print parser.usage
+            exit(0)
+        else:
+            cScan.subnetCScan(ipCheckStrings, subnetCheckStrings)
     else:
         print parser.usage
         exit(0)
