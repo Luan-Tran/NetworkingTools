@@ -54,7 +54,8 @@ def main():
     "specify target IP address")
     parser.add_option("-S", dest = "trgtSubnet", type = "string", help = \
     "specify subnet mask")
-    
+
+
     #Assign arugments
     (options,args) = parser.parse_args()
     trgtIP = options.trgtIP
@@ -64,6 +65,7 @@ def main():
     if (trgtIP == None) | (subnetMask == None):
         print parser.usage
         exit(0)
+
 
     #Check if IP and subnet are valid
     ipCheckStrings = trgtIP.split('.')
@@ -90,6 +92,7 @@ def main():
         else:
             cScan.subnetCScan(ipCheckStrings, subnetCheckStrings)
     else:
+        print "IP address is not a class B or class C address"
         print parser.usage
         exit(0)
     

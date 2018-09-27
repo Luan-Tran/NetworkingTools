@@ -2,7 +2,7 @@ subScan: Scans the subnet for devices that are active or have been recently
 active. Attempts to create a socket by using gethostbyaddr(ip_address). Prints
 out IP addresses and device name to console. Works for class C and class B 
 addresses. 
-Ex: python subScan.py -H 192.168.10.1 -S 255.255.255.0
+Ex: python subnetScan.py -H 192.168.10.1 -S 255.255.255.0
 Ex: python subnetScan.py -H 192.168.1.1 -S 255.255.255.0 | cut -d ' ' -f 1 > addresses.txt
 
 portScanner: Takes in a list of IP addresses from a file and port numbers and
